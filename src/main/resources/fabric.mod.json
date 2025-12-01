@@ -1,13 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "notargetedblocktags",
+  "id": "ntbt",
   "version": "${version}",
-  "name": "ntbt",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "name": "No Targeted Block Tags",
+  "description": "Removes block tags from targeted blocks",
+  "authors": ["BluebirdDevs"],
+  "contact": {
+    "sources": "https://github.com/BluebirdDevs/NoTargetedBlockTags",
+    "homepage": "https://github.com/BluebirdDevs/NoTargetedBlockTags",
+    "issues": "https://github.com/BluebirdDevs/NoTargetedBlockTags/issues"
+  },
   "license": "All-Rights-Reserved",
-  "icon": "assets/notargetedblocktags/icon.png",
+  "icon": "assets/ntbt/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
