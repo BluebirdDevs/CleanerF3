@@ -1,1 +1,1 @@
-A minecraft mod that removes block tags from looking at block in the f3 debug menu
+A minecraft mod that allows you to edit more F3 settings such as hiding targeted block tags. This is a somewhat updated version of CleanF3.
