@@ -1,10 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "bluebird.notargetedblocktags.client.mixin",
+  "package": "bluebird.cleanerdebug.client.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "LookingAtBlockDebugHudEntryMixin"
+    "LookingAtBlockDebugHudEntryMixin",
+    "DebugHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

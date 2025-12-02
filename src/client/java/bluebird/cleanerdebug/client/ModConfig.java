@@ -1,4 +1,4 @@
-package bluebird.notargetedblocktags.client;
+package bluebird.cleanerdebug.client;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
@@ -7,7 +7,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
-@Config(name = "ntbt")
+@Config(name = "cleanerdebug")
 public class ModConfig implements ConfigData {
 
     @ConfigEntry.Gui.Excluded
@@ -20,6 +20,14 @@ public class ModConfig implements ConfigData {
     }
 
     @ConfigEntry.Gui.Tooltip()
-    @Comment("Enables this mod")
-    public boolean enabled = true;
+    @Comment("Disables the targeted block tags")
+    public boolean targetedBlockTags = false;
+
+    @ConfigEntry.Gui.Tooltip()
+    @Comment("Disables the targeted block state")
+    public boolean targetedBlockState = false;
+
+    @ConfigEntry.Gui.Tooltip()
+    @Comment("Disables the debug hints")
+    public boolean debugHints = false;
 }

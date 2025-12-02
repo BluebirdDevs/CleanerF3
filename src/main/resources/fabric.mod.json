@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "ntbt",
+  "id": "cleanerdebug",
   "version": "${version}",
-  "name": "No Targeted Block Tags",
-  "description": "Removes block tags from targeted blocks",
+  "name": "Cleaner F3",
+  "description": "Allows you to edit more F3 settings such as targeted block tags",
   "authors": ["BluebirdDevs"],
   "contact": {
-    "sources": "https://github.com/BluebirdDevs/NoTargetedBlockTags",
-    "homepage": "https://github.com/BluebirdDevs/NoTargetedBlockTags",
-    "issues": "https://github.com/BluebirdDevs/NoTargetedBlockTags/issues"
+    "sources": "https://github.com/BluebirdDevs/CleanerF3",
+    "homepage": "https://github.com/BluebirdDevs/CleanerF3",
+    "issues": "https://github.com/BluebirdDevs/CleanerF3/issues"
   },
   "license": "All-Rights-Reserved",
-  "icon": "assets/ntbt/icon.png",
+  "icon": "assets/cleanerdebug/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "bluebird.notargetedblocktags.client.NotargetedblocktagsClient"
+      "bluebird.cleanerdebug.client.CleanerDebugClient"
     ],
     "modmenu": [
-      "bluebird.notargetedblocktags.client.ConfigModMenu"
+      "bluebird.cleanerdebug.client.ConfigModMenu"
     ]
   },
   "mixins": [
     {
-      "config": "notargetedblocktags.client.mixins.json",
+      "config": "cleanerdebug.client.mixins.json",
       "environment": "client"
     }
   ],

@@ -1,0 +1,9 @@
+{
+  "text.autoconfig.cleanerdebug.option.targetedBlockTags.@Tooltip": "Disables the targeted block tags",
+  "text.autoconfig.cleanerdebug.option.targetedBlockTags": "Targeted Block Tags",
+  "text.autoconfig.cleanerdebug.option.targetedBlockState.@Tooltip": "Disables the targeted block state",
+  "text.autoconfig.cleanerdebug.option.targetedBlockState": "Targeted Block State",
+  "text.autoconfig.cleanerdebug.option.debugHints.@Tooltip": "Disables the debug hints",
+  "text.autoconfig.cleanerdebug.option.debugHints": "Debug Hints",
+  "text.autoconfig.cleanerdebug.title": "Debug Options"
+}
