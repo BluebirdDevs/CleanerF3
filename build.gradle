@@ -14,7 +14,7 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        "notargetedblocktags" {
+        "cleanerf3" {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
         }
