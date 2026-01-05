@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "LookingAtBlockDebugHudEntryMixin",
-    "DebugHudMixin"
+    "DebugHudMixin",
+    "PlayerPositionDebugHudEntryMixin",
+    "LookingAtFluidDebugHudEntryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
