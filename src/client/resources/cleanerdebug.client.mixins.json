@@ -6,7 +6,8 @@
   "client": [
     "LookingAtBlockDebugHudEntryMixin",
     "DebugHudMixin",
-    "PlayerPositionDebugHudEntryMixin"
+    "PlayerPositionDebugHudEntryMixin",
+    "LookingAtFluidDebugHudEntryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
