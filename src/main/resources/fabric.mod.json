@@ -3,11 +3,11 @@
   "id": "cleanerdebug",
   "version": "${version}",
   "name": "Cleaner F3",
-  "description": "Allows you to edit more F3 settings such as targeted block tags",
+  "description": "Allows you to edit more F3 settings such as targeted block tags and simplified position",
   "authors": ["BluebirdDevs"],
   "contact": {
     "sources": "https://github.com/BluebirdDevs/CleanerF3",
-    "homepage": "https://github.com/BluebirdDevs/CleanerF3",
+    "homepage": "https://modrinth.com/project/Lk4kDFc2",
     "issues": "https://github.com/BluebirdDevs/CleanerF3/issues"
   },
   "license": "All-Rights-Reserved",
