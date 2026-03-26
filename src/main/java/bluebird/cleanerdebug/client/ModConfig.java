@@ -20,10 +20,6 @@ public class ModConfig implements ConfigData {
     }
 
     @ConfigEntry.Gui.Tooltip()
-    @Comment("Disables the targeted block tags")
-    public boolean targetedBlockTags = false;
-
-    @ConfigEntry.Gui.Tooltip()
     @Comment("Disables the targeted block state")
     public boolean targetedBlockState = true;
 

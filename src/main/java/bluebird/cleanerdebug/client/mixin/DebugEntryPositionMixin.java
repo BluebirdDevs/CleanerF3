@@ -1,12 +1,7 @@
 package bluebird.cleanerdebug.client.mixin;
 
 import bluebird.cleanerdebug.client.ModConfig;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.hud.debug.DebugHudLines;
-import net.minecraft.client.gui.hud.debug.PlayerPositionDebugHudEntry;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
@@ -14,12 +9,17 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import java.util.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.debug.DebugEntryPosition;
+import net.minecraft.client.gui.components.debug.DebugScreenDisplayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
 
-@Mixin(PlayerPositionDebugHudEntry.class)
-public class PlayerPositionDebugHudEntryMixin {
+@Mixin(DebugEntryPosition.class)
+public class DebugEntryPositionMixin {
 
     @ModifyArgs(
-            method = "render",
+            method = "display",
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/lang/String;format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;",
@@ -27,11 +27,11 @@ public class PlayerPositionDebugHudEntryMixin {
             )
     )
     private void simpleDirection(Args args) {
-        MinecraftClient client = MinecraftClient.getInstance();
+        Minecraft client = Minecraft.getInstance();
         Entity entity = client.getCameraEntity();
 
         Object[] varargs = args.get(2);
-        String newDir = switch (entity.getHorizontalFacing()) {
+        String newDir = switch (entity.getDirection()) {
             case NORTH -> "-Z";
             case SOUTH -> "+Z";
             case WEST  -> "-X";
@@ -46,7 +46,7 @@ public class PlayerPositionDebugHudEntryMixin {
     }
 
     @Redirect(
-            method = "render",
+            method = "display",
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/lang/String;format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;",
@@ -57,20 +57,20 @@ public class PlayerPositionDebugHudEntryMixin {
         String prefix = ModConfig.INSTANCE.pos_name;
         if (!prefix.isEmpty()) prefix = prefix.concat(": ");
         if (ModConfig.INSTANCE.simplified_pos) {
-            BlockPos blockPos = MinecraftClient.getInstance().getCameraEntity().getBlockPos();
+            BlockPos blockPos = Minecraft.getInstance().getCameraEntity().blockPosition();
             return String.format(Locale.ROOT, prefix+"%d %d %d", blockPos.getX(), blockPos.getY(), blockPos.getZ());
         }
         return String.format(locale, prefix+s.substring(5), objects);
     }
 
     @Redirect(
-            method = "render",
+            method = "display",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/hud/debug/DebugHudLines;addLinesToSection(Lnet/minecraft/util/Identifier;Ljava/util/Collection;)V"
+                    target = "Lnet/minecraft/client/gui/components/debug/DebugScreenDisplayer;addToGroup(Lnet/minecraft/resources/Identifier;Ljava/util/Collection;)V"
             )
     )
-    private void redirectAddLines(DebugHudLines instance, Identifier section, Collection<String> lines) {
+    private void redirectAddLines(DebugScreenDisplayer instance, Identifier section, Collection<String> lines) {
         List<String> arr = new ArrayList<>(lines);
 
         ModConfig setting = ModConfig.INSTANCE;
@@ -86,6 +86,6 @@ public class PlayerPositionDebugHudEntryMixin {
             }
         }
 
-        instance.addLinesToSection(section, arr);
+        instance.addToGroup(section, arr);
     }
 }
