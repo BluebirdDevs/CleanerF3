@@ -21,6 +21,12 @@ public class ClothConfigScreen {
                 .setTooltip(Component.translatable("option.cleanerdebug.hide_debug_hints.tooltip"))
                 .build());
 
+        general.addEntry(eb.startBooleanToggle(Component.translatable("option.cleanerdebug.hide_targeted_blockstate_tags"), config.hide_targeted_blockstate_tags)
+                .setDefaultValue(true)
+                .setSaveConsumer(val -> config.hide_targeted_blockstate_tags = val)
+                .setTooltip(Component.translatable("option.cleanerdebug.hide_targeted_blockstate_tags.tooltip"))
+                .build());
+
         general.addEntry(eb.startBooleanToggle(Component.translatable("option.cleanerdebug.hide_targeted_block_tags"), config.hide_targeted_block_tags)
                 .setDefaultValue(false)
                 .setSaveConsumer(val -> config.hide_targeted_block_tags = val)

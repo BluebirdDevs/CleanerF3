@@ -1,24 +1,20 @@
 package bluebird.cleanerdebug.client.mixin;
 
 import bluebird.cleanerdebug.client.ConfigManager;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.minecraft.client.gui.components.debug.DebugEntryLookingAt;
-import net.minecraft.world.level.block.state.StateHolder;
+import net.minecraft.client.gui.components.debug.DebugEntryLookingAtBlock;
+import net.minecraft.client.gui.components.debug.DebugEntryLookingAtFluid;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import java.util.List;
 
-@Mixin(DebugEntryLookingAt.DebugEntryLookingAtState.class)
+@Mixin({
+        DebugEntryLookingAtBlock.class,
+        DebugEntryLookingAtFluid.class
+})
 public class DebugEntryLookingAtState {
-    @WrapOperation(
-            method = "extractInfo",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/debug/DebugEntryLookingAt$DebugEntryLookingAtState;addStateProperties(Ljava/util/List;Lnet/minecraft/world/level/block/state/StateHolder;)V")
-    )
-    private void cleanerf3$remove_block_tags(List<String> result, StateHolder<?, ?> stateHolder, Operation<Void> original) {
-        if (!ConfigManager.INSTANCE.hide_targeted_block_tags) {
-            original.call(result, stateHolder);
-        }
+    @ModifyArg(method = "display", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;pick(DFZ)Lnet/minecraft/world/phys/HitResult;"))
+    public double cleanerf3$change_hit_range(double range) {
+        return ConfigManager.INSTANCE.targeted_block_max_distance;
     }
 }

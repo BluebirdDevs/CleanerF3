@@ -11,16 +11,16 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class DebugScreenOverlayMixin {
 
     @Redirect(
-            method = "extractRenderState",
+            method = "render",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/components/debug/DebugScreenEntryList;isOverlayVisible()Z"
+                    target = "Lnet/minecraft/client/gui/components/debug/DebugScreenEntryList;isF3Visible()Z"
             )
     )
     private boolean conditionallyDisableF3Help(DebugScreenEntryList instance) {
         if (ConfigManager.INSTANCE.hide_debug_hints) {
             return false;
         }
-        return instance.isOverlayVisible();
+        return instance.isF3Visible();
     }
 }

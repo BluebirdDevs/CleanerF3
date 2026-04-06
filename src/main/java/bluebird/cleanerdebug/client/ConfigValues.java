@@ -4,6 +4,7 @@ public class ConfigValues {
 
     public boolean hide_debug_hints = true;
     public boolean hide_targeted_block_tags = false;
+    public boolean hide_targeted_blockstate_tags = true;
     public int targeted_block_max_distance = 20;
 
     public Position pos = new Position();

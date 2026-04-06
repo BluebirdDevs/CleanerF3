@@ -6,6 +6,8 @@
   "option.cleanerdebug.hide_debug_hints": "Hide Debug Hints",
   "option.cleanerdebug.hide_targeted_block_tags.tooltip": "Disables the targeted block state",
   "option.cleanerdebug.hide_targeted_block_tags": "Hide Targeted Block State",
+  "option.cleanerdebug.hide_targeted_blockstate_tags.tooltip": "Disables the targeted block tags",
+  "option.cleanerdebug.hide_targeted_blockstate_tags": "Hide Targeted Block Tags",
   "option.cleanerdebug.targeted_block_max_distance": "Targeted Block Max Distance",
   "option.cleanerdebug.targeted_block_max_distance.tooltip": "The max distance away a targeted block can be to still be shown in F3",
 

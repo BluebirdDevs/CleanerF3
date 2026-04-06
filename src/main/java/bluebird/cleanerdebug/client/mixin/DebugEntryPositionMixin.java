@@ -2,7 +2,7 @@ package bluebird.cleanerdebug.client.mixin;
 
 import bluebird.cleanerdebug.client.ConfigManager;
 import bluebird.cleanerdebug.client.ConfigValues;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
@@ -70,11 +70,11 @@ public class DebugEntryPositionMixin {
             method = "display",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/components/debug/DebugScreenDisplayer;addToGroup(Lnet/minecraft/resources/Identifier;Ljava/util/Collection;)V"
+                    target = "Lnet/minecraft/client/gui/components/debug/DebugScreenDisplayer;addToGroup(Lnet/minecraft/resources/ResourceLocation;Ljava/util/Collection;)V"
             )
     )
-    private void redirectAddLines(DebugScreenDisplayer instance, Identifier section, Collection<String> lines) {
-        List<String> arr = new ArrayList<>(lines);
+    private void redirectAddLines(DebugScreenDisplayer instance, ResourceLocation resourceLocation, Collection<String> strings) {
+        List<String> arr = new ArrayList<>(strings);
 
         ConfigValues setting = ConfigManager.INSTANCE;
 
@@ -91,6 +91,6 @@ public class DebugEntryPositionMixin {
             arr.removeIf(s -> s.contains("FC"));
         }
 
-        instance.addToGroup(section, arr);
+        instance.addToGroup(resourceLocation, arr);
     }
 }
