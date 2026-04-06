@@ -1,6 +1,7 @@
 package bluebird.cleanerdebug.client.mixin;
 
-import bluebird.cleanerdebug.client.ModConfig;
+import bluebird.cleanerdebug.client.ConfigManager;
+import bluebird.cleanerdebug.client.ConfigValues;
 import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -8,12 +9,13 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import java.util.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.debug.DebugEntryPosition;
 import net.minecraft.client.gui.components.debug.DebugScreenDisplayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
+
+import java.util.*;
 
 @Mixin(DebugEntryPosition.class)
 public class DebugEntryPositionMixin {
@@ -39,7 +41,7 @@ public class DebugEntryPositionMixin {
             default    -> (String) varargs[1];
         };
 
-        if (ModConfig.INSTANCE.simplified_direction || ModConfig.INSTANCE.simplified_pos) {
+        if (ConfigManager.INSTANCE.pos.simplified_direction) {
             varargs[1] = newDir;
             args.set(2, varargs);
         }
@@ -54,10 +56,11 @@ public class DebugEntryPositionMixin {
             )
     )
     private String simplePos(Locale locale, String s, Object[] objects) {
-        String prefix = ModConfig.INSTANCE.pos_name;
+        String prefix = ConfigManager.INSTANCE.pos.pos_name;
         if (!prefix.isEmpty()) prefix = prefix.concat(": ");
-        if (ModConfig.INSTANCE.simplified_pos) {
-            BlockPos blockPos = Minecraft.getInstance().getCameraEntity().blockPosition();
+        if (ConfigManager.INSTANCE.pos.simplified_pos) {
+            Entity camera = Minecraft.getInstance().getCameraEntity();
+            BlockPos blockPos = camera.blockPosition();
             return String.format(Locale.ROOT, prefix+"%d %d %d", blockPos.getX(), blockPos.getY(), blockPos.getZ());
         }
         return String.format(locale, prefix+s.substring(5), objects);
@@ -73,17 +76,19 @@ public class DebugEntryPositionMixin {
     private void redirectAddLines(DebugScreenDisplayer instance, Identifier section, Collection<String> lines) {
         List<String> arr = new ArrayList<>(lines);
 
-        ModConfig setting = ModConfig.INSTANCE;
+        ConfigValues setting = ConfigManager.INSTANCE;
 
-        if (setting.simplified_pos) {
-            arr.removeIf(s -> !(s.contains(ModConfig.INSTANCE.pos_name) || s.contains("Facing")));
-        } else {
-            if (setting.hide_chunk_position) {
-                arr.removeIf(s -> s.contains("Chunk"));
-            }
-            if (setting.hide_facing) {
-                arr.removeIf(s -> s.contains("Facing"));
-            }
+        if (setting.pos.hide_chunk_position) {
+            arr.removeIf(s -> s.contains("Chunk"));
+        }
+        if (setting.pos.hide_facing) {
+            arr.removeIf(s -> s.contains("Facing"));
+        }
+        if (setting.pos.simplified_pos) {
+            arr.removeIf(s -> s.contains("Block"));
+        }
+        if (setting.pos.hide_dimension) {
+            arr.removeIf(s -> s.contains("FC"));
         }
 
         instance.addToGroup(section, arr);

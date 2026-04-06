@@ -6,7 +6,8 @@
   "client": [
     "DebugEntryPositionMixin",
     "DebugScreenOverlayMixin",
-    "DebugEntryLookingAtMixin"
+    "DebugEntryLookingAtState",
+    "DebugEntryLookingAtBlockRangeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

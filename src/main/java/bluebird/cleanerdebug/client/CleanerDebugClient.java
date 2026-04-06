@@ -10,6 +10,6 @@ public class CleanerDebugClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ModConfig.init();
+        ConfigManager.load();
     }
 }

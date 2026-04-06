@@ -1,6 +1,6 @@
 package bluebird.cleanerdebug.client.mixin;
 
-import bluebird.cleanerdebug.client.ModConfig;
+import bluebird.cleanerdebug.client.ConfigManager;
 import net.minecraft.client.gui.components.DebugScreenOverlay;
 import net.minecraft.client.gui.components.debug.DebugScreenEntryList;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +18,7 @@ public abstract class DebugScreenOverlayMixin {
             )
     )
     private boolean conditionallyDisableF3Help(DebugScreenEntryList instance) {
-        if (!ModConfig.INSTANCE.debugHints) {
+        if (ConfigManager.INSTANCE.hide_debug_hints) {
             return false;
         }
         return instance.isOverlayVisible();
