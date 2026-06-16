@@ -1,0 +1,26 @@
+package bluebird.cleanerf3.mixin;
+
+import bluebird.cleanerf3.config.ConfigManager;
+import net.minecraft.client.gui.components.DebugScreenOverlay;
+import net.minecraft.client.gui.components.debug.DebugScreenEntryList;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
+
+@Mixin(DebugScreenOverlay.class)
+public abstract class DebugScreenOverlayMixin {
+
+    @Redirect(
+            method = "extractRenderState",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/gui/components/debug/DebugScreenEntryList;isOverlayVisible()Z"
+            )
+    )
+    private boolean conditionallyDisableF3Help(DebugScreenEntryList instance) {
+        if (ConfigManager.INSTANCE.hide_debug_hints) {
+            return false;
+        }
+        return instance.isOverlayVisible();
+    }
+}
