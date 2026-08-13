@@ -32,5 +32,8 @@
   "depends": {},
   "suggests": {
     "cloth-config": "*"
+  },
+  "breaks": {
+    "betterf3": "*"
   }
 }
