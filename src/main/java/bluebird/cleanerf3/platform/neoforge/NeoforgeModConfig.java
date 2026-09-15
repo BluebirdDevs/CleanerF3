@@ -2,7 +2,7 @@ package bluebird.cleanerf3.platform.neoforge;
 
 //? neoforge {
 
-import bluebird.cleanerf3.Main;
+/*import bluebird.cleanerf3.Main;
 import bluebird.cleanerf3.config.ClothConfigScreen;
 import bluebird.cleanerf3.config.ConfigManager;
 import net.minecraft.ChatFormatting;
@@ -27,13 +27,9 @@ public class NeoforgeModConfig {
 					if (open) {
 						Util.getPlatform().openUri("https://modrinth.com/mod/cloth-config");
 					}
-					//? >= 26.2 {
-					Minecraft.getInstance().gui.setScreen(parent);
-					//?} else {
-					/*Minecraft.getInstance().setScreen(parent);
-					*///?}
+					Minecraft.getInstance()/^? if >= 26.2 {^/.gui/^?}^/.setScreen(parent);
 				}, Component.translatable("cleanerf3.cloth_config_not_installed").withStyle(ChatFormatting.RED, ChatFormatting.BOLD, ChatFormatting.UNDERLINE), "https://modrinth.com/mod/cloth-config", true)
 		);
 	}
 }
-//?}
+*///?}

@@ -7,10 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 //? fabric {
-/*import bluebird.cleanerf3.platform.fabric.FabricPlatform;
-*///?} neoforge {
-import bluebird.cleanerf3.platform.neoforge.NeoforgePlatform;
- //?} forge {
+import bluebird.cleanerf3.platform.fabric.FabricPlatform;
+//?} neoforge {
+/*import bluebird.cleanerf3.platform.neoforge.NeoforgePlatform;
+ *///?} forge {
 /*import bluebird.cleanerf3.platform.forge.ForgePlatform;
 *///?}
 
@@ -28,16 +28,16 @@ public class Main {
 		ConfigManager.load();
 	}
 
-	static Platform platform() {
+	public static Platform platform() {
 		return PLATFORM;
 	}
 
 	private static Platform createPlatformInstance() {
 		//? fabric {
-		/*return new FabricPlatform();
-		*///?} neoforge {
-		return new NeoforgePlatform();
-		 //?} forge {
+		return new FabricPlatform();
+		//?} neoforge {
+		/*return new NeoforgePlatform();
+		 *///?} forge {
 		/*return new ForgePlatform();
 		*///?}
 	}

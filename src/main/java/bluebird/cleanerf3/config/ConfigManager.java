@@ -10,17 +10,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-//? neoforge{
-import net.neoforged.fml.loading.FMLPaths;
-//?} fabric{
-/*import net.fabricmc.loader.api.FabricLoader;
-*///?}
 public class ConfigManager {
-	//? neoforge{
-	private static final Path CONFIG_PATH = FMLPaths.CONFIGDIR.get();
-	//?} fabric{
-	/*private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir();
-	 *///?}
+    private static final Path CONFIG_PATH = Main.platform().getConfigDir();
     private static final File CONFIG_FILE = new File(CONFIG_PATH.toString(), "cleanerf3.json");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 

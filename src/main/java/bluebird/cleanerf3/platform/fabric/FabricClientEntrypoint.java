@@ -2,7 +2,7 @@ package bluebird.cleanerf3.platform.fabric;
 
 //? fabric {
 
-/*import bluebird.cleanerf3.Main;
+import bluebird.cleanerf3.Main;
 import dev.kikugie.fletching_table.annotation.fabric.Entrypoint;
 import net.fabricmc.api.ClientModInitializer;
 
@@ -15,4 +15,4 @@ public class FabricClientEntrypoint implements ClientModInitializer {
 	}
 
 }
-*///?}
+//?}
