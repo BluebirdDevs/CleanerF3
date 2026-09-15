@@ -9,13 +9,19 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.Util;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+
+//? if >= 26.3 {
+import com.mojang.blaze3d.Blaze3D;
+import java.net.URI;
+//?} else {
+/^import net.minecraft.util.Util;
+^///?}
 
 @Mod(value = Main.MOD_ID, dist = Dist.CLIENT)
 @EventBusSubscriber(value = Dist.CLIENT)
@@ -25,10 +31,14 @@ public class NeoforgeModConfig {
 				IConfigScreenFactory.class,
 				ModList.get().isLoaded("cloth_config") ? (_container, parent) -> ClothConfigScreen.create(parent, ConfigManager.INSTANCE) : (_container, parent) -> new ConfirmLinkScreen( (open) -> {
 					if (open) {
-						Util.getPlatform().openUri("https://modrinth.com/mod/cloth-config");
+						//? if >= 26.3 {
+						Blaze3D.openUri(URI.create("https://modrinth.com/mod/cloth-config"));
+						//?} else {
+                		/^Util.getPlatform().openUri("https://modrinth.com/mod/cloth-config");
+                		^///?}
 					}
 					Minecraft.getInstance()/^? if >= 26.2 {^/.gui/^?}^/.setScreen(parent);
-				}, Component.translatable("cleanerf3.cloth_config_not_installed").withStyle(ChatFormatting.RED, ChatFormatting.BOLD, ChatFormatting.UNDERLINE), "https://modrinth.com/mod/cloth-config", true)
+				}, Component.translatable("cleanerf3.cloth_config_not_installed").withStyle(ChatFormatting.RED, ChatFormatting.BOLD, ChatFormatting.UNDERLINE), /^? if >= 26.2 {^/URI.create(/^?}^/"https://modrinth.com/mod/cloth-config"/^? if >= 26.2 {^/)/^?}^/, true)
 		);
 	}
 }

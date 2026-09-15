@@ -9,6 +9,7 @@ displayName = "${name}"
 version = "${version}"
 displayURL = "${homepage_url}"
 modUrl = "${homepage_url}"
+iconFile = "assets/${id}/icon.png"
 logoFile = "assets/${id}/icon.png"
 authors = "${authors}"
 logoBlur = false
